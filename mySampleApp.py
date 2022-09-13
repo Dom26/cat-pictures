@@ -1,9 +1,15 @@
+import re
 import requests
 import shutil
+import sys
+import argparse
 
-def main():
+def main(outFile,text):
     url = "https://cataas.com/c"
-    filename = "fileImage.jpg"
+    filename = outFile
+    if not text == None:
+        url += f"/s/{text}"
+    
     response = requests.get(f"{url}", stream=True)
     if response.status_code == 200:
         print("data fetched successfully")
@@ -16,4 +22,11 @@ def main():
         print(f"There was a problem fetching the data. Code {response.status_code} was returned")
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description='Writes a random cat image to a given image file')
+    parser.add_argument('-o',dest='outputFile',help='output file to be written to',required=True)
+    parser.add_argument('-t',dest='text',help='Text to be included in output file')
+    args = parser.parse_args()
+    #print(args)
+    #print(args.outputFile)
+    #print(args.text)
+    main(args.outputFile,args.text)
