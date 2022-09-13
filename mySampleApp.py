@@ -1,7 +1,5 @@
-import re
 import requests
 import shutil
-import sys
 import argparse
 
 def main(outFile,text):
