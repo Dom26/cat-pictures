@@ -24,7 +24,4 @@ if __name__ == "__main__":
     parser.add_argument('-o',dest='outputFile',help='output file to be written to',required=True)
     parser.add_argument('-t',dest='text',help='Text to be included in output file')
     args = parser.parse_args()
-    #print(args)
-    #print(args.outputFile)
-    #print(args.text)
     main(args.outputFile,args.text)
